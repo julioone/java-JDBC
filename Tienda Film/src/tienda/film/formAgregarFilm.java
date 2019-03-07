@@ -7,7 +7,8 @@ package tienda.film;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import java.sql.*;
+import javax.swing.JOptionPane;
 /**
  *
  * @author julio.ospina
@@ -50,6 +51,8 @@ public class formAgregarFilm extends javax.swing.JDialog {
         trueDeleteEscenes = new javax.swing.JRadioButton();
         trueBehindEscenes = new javax.swing.JRadioButton();
         textRateRenta = new javax.swing.JTextField();
+        cmbLenguajeOriginal = new javax.swing.JComboBox<>();
+        cmbClasificacionFilm = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -115,6 +118,10 @@ public class formAgregarFilm extends javax.swing.JDialog {
 
         textRateRenta.setText("[Rate Renta]");
 
+        cmbLenguajeOriginal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        cmbClasificacionFilm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,36 +130,41 @@ public class formAgregarFilm extends javax.swing.JDialog {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(textRateRenta, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cmbCategoria, 0, 141, Short.MAX_VALUE)
-                        .addComponent(textDuracionFilm)
-                        .addComponent(textDuracionRentFilm, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                        .addComponent(textañoFilm)
-                        .addComponent(textDescripcionFilm)
-                        .addComponent(textTituloFilm)
-                        .addComponent(cmbLenguajeFilm, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(textCostoRemplazoFilm)))
+                    .addComponent(cmbCategoria, 0, 141, Short.MAX_VALUE)
+                    .addComponent(textDuracionFilm)
+                    .addComponent(textDuracionRentFilm, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                    .addComponent(textañoFilm)
+                    .addComponent(textDescripcionFilm)
+                    .addComponent(textTituloFilm)
+                    .addComponent(cmbLenguajeFilm, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textCostoRemplazoFilm)
+                    .addComponent(cmbLenguajeOriginal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(trueTrailers)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(trueCommentaries)
-                            .addComponent(trueDeleteEscenes)
-                            .addComponent(trueBehindEscenes))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnGuardarFilm)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnCancelarCreacionFilm)
-                        .addGap(21, 21, 21))))
+                        .addGap(21, 21, 21))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(trueTrailers)
+                            .addComponent(trueCommentaries)
+                            .addComponent(trueDeleteEscenes)
+                            .addComponent(trueBehindEscenes)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cmbClasificacionFilm, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(textTituloFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(textTituloFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbClasificacionFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(textDescripcionFilm, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,25 +177,31 @@ public class formAgregarFilm extends javax.swing.JDialog {
                     .addComponent(cmbCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(trueCommentaries))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textañoFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(trueDeleteEscenes))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbLenguajeFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(trueBehindEscenes))
-                .addGap(18, 18, 18)
-                .addComponent(textDuracionRentFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(textDuracionFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(textCostoRemplazoFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGuardarFilm)
-                    .addComponent(btnCancelarCreacionFilm)
-                    .addComponent(textRateRenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(trueDeleteEscenes)
+                            .addComponent(cmbLenguajeOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(trueBehindEscenes)
+                        .addGap(120, 120, 120)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnGuardarFilm)
+                            .addComponent(btnCancelarCreacionFilm))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(textañoFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmbLenguajeFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textDuracionRentFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textDuracionFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(textCostoRemplazoFilm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addComponent(textRateRenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         pack();
@@ -205,6 +223,13 @@ public class formAgregarFilm extends javax.swing.JDialog {
     private void llenarCombobox()
     {
         
+        //EnumRating clasificacionFilm = EnumRating.G;
+        for(EnumRating clasificacionFilm: EnumRating.values())
+        {
+            cmbClasificacionFilm.addItem(clasificacionFilm.getClasificacionFilm().toString());
+            
+        }
+        
         conexionBD myConector = new conexionBD();
         ResultSet resultset = null;
         try
@@ -215,6 +240,7 @@ public class formAgregarFilm extends javax.swing.JDialog {
             
             while (resultset.next()) {
                 cmbLenguajeFilm.addItem(resultset.getString("language.name"));
+                cmbLenguajeOriginal.addItem(resultset.getString("language.name"));
             }
             
             
@@ -246,6 +272,8 @@ public class formAgregarFilm extends javax.swing.JDialog {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         cmbLenguajeFilm.removeAllItems();
+        cmbClasificacionFilm.removeAllItems();
+        cmbLenguajeOriginal.removeAllItems();
         cmbCategoria.removeAllItems();
         llenarCombobox();
         
@@ -260,28 +288,102 @@ public class formAgregarFilm extends javax.swing.JDialog {
         this.setVisible(false);
     }//GEN-LAST:event_btnCancelarCreacionFilmActionPerformed
 
+    private static java.sql.Timestamp getCurrentTimeStamp() {
+
+	java.util.Date today = new java.util.Date();
+	return new java.sql.Timestamp(today.getTime());
+
+    }
+
     private void btnGuardarFilmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarFilmActionPerformed
-    /*    // TODO add your handling code here:
-    private javax.swing.JButton btnCancelarCreacionFilm;
-    private javax.swing.JButton btnGuardarFilm;
-    private javax.swing.JComboBox<String> cmbCategoria;
-    private javax.swing.JComboBox<String> cmbLenguajeFilm;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField textCostoRemplazoFilm;
-    private javax.swing.JTextField textDescripcionFilm;
-    private javax.swing.JTextField textDuracionFilm;
-    private javax.swing.JTextField textDuracionRentFilm;
-    private javax.swing.JTextField textTituloFilm;
-    private javax.swing.JTextField textañoFilm;
-    private javax.swing.JRadioButton trueBehindEscenes;
-    private javax.swing.JRadioButton trueCommentaries;
-    private javax.swing.JRadioButton trueDeleteEscenes;
-    private javax.swing.JRadioButton trueTrailers;
-    // End of variables declaration */
+       // TODO add your handling code here:
+
         if( !textTituloFilm.getText().trim().isEmpty() && !textCostoRemplazoFilm.getText().trim().isEmpty() && !textDuracionRentFilm.getText().trim().isEmpty() && !textRateRenta.getText().trim().isEmpty() )
         {
             //datos obligatorios correctos.
+            conexionBD myconexion = new conexionBD();
+            try{
+                PreparedStatement preparedStatement = myconexion.connection.prepareStatement("INSERT INTO film (title,description,release_year,language_id,original_language_id,rental_duration,rental_rate,length,replacement_cost,rating,special_features,last_update)VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+                preparedStatement.setString(1,textTituloFilm.getText());
+                preparedStatement.setString(2,textDescripcionFilm.getText());
+                preparedStatement.setInt(3, Integer.parseInt(textañoFilm.getText()));
+                preparedStatement.setInt(4, cmbLenguajeFilm.getSelectedIndex()+1);
+                preparedStatement.setInt(5, cmbLenguajeOriginal.getSelectedIndex()+1);
+                preparedStatement.setInt(6, Integer.parseInt(textDuracionRentFilm.getText()));
+                preparedStatement.setDouble(7,Double.parseDouble(textRateRenta.getText()));
+                preparedStatement.setInt(8, Integer.parseInt(textDuracionFilm.getText()));
+                preparedStatement.setDouble(9, Double.parseDouble(textCostoRemplazoFilm.getText()));
+                preparedStatement.setString(10, cmbClasificacionFilm.getSelectedItem().toString());
+                String contenedorSpecialFeatures="";
+                
+                
+                
+                if(trueTrailers.isSelected())
+                {
+                    contenedorSpecialFeatures+= "Trailers,";
+                }
+                if(trueCommentaries.isSelected())
+                {
+                    contenedorSpecialFeatures+= "Commentaries,";
+                }
+                if(trueDeleteEscenes.isSelected())
+                {
+                    contenedorSpecialFeatures+= "Deleted Escenes,";
+                    
+                }
+                if(trueBehindEscenes.isSelected())
+                {
+                    contenedorSpecialFeatures+= "Behind Escenes,";
+                }
+                contenedorSpecialFeatures = contenedorSpecialFeatures.substring(0,contenedorSpecialFeatures.length()-1);
+                
+                System.out.printf("%s\n", contenedorSpecialFeatures);
+             
+                preparedStatement.setString(11, contenedorSpecialFeatures);
+                preparedStatement.setTimestamp(12, getCurrentTimeStamp());
+                
+                preparedStatement.executeUpdate();
+                ResultSet resultset = null;
+                resultset = myconexion.statement.executeQuery("SELECT film.film_id FROM film WHERE film.description='"+textDescripcionFilm.getText()+"'");
+                int film_id = 0;
+                while(resultset.next())
+                {
+                    film_id = resultset.getInt("film_id");
+                    
+                }
+                PreparedStatement insertFilmCategory = myconexion.connection.prepareStatement("INSERT INTO film_category (film_id,category_id,last_update) VALUES(?,?,?) ");
+                
+                insertFilmCategory.setInt(1,film_id);
+                insertFilmCategory.setInt(2,cmbClasificacionFilm.getSelectedIndex()+1);
+                insertFilmCategory.setTimestamp(3, getCurrentTimeStamp());
+                insertFilmCategory.executeUpdate();
+                
+                
+                
+               
+                
+                
+                javax.swing.JOptionPane.showMessageDialog(null,"Se ha agregar un nuevo Film Exitosamente fue agregado con el ID "+film_id+".");
+                
+                //limpiar todos los campos 
+                textCostoRemplazoFilm.setText("");
+                textDescripcionFilm.setText("");;
+                textDuracionFilm.setText("");;
+                textDuracionRentFilm.setText("");;
+                textRateRenta.setText("");;
+                textTituloFilm.setText("");;
+                textañoFilm.setText("");;
+               
+                
+                
+                
+             
             
+            }
+            catch( SQLException sqlException)
+            {
+                sqlException.printStackTrace();
+            }
         }
         else
         {
@@ -338,7 +440,9 @@ public class formAgregarFilm extends javax.swing.JDialog {
     private javax.swing.JButton btnCancelarCreacionFilm;
     private javax.swing.JButton btnGuardarFilm;
     private javax.swing.JComboBox<String> cmbCategoria;
+    private javax.swing.JComboBox<String> cmbClasificacionFilm;
     private javax.swing.JComboBox<String> cmbLenguajeFilm;
+    private javax.swing.JComboBox<String> cmbLenguajeOriginal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField textCostoRemplazoFilm;
     private javax.swing.JTextField textDescripcionFilm;

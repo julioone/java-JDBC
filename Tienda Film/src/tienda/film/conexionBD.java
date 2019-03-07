@@ -21,6 +21,7 @@ public class conexionBD {
         {
             connection  = DriverManager.getConnection(TiendaFilm.DATABASE_URL,"root","tucamaesmia1");
             statement = connection.createStatement();
+            
         }
         
         catch( SQLException sqlException)

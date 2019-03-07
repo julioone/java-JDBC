@@ -30,6 +30,11 @@ public class Film {
     Film()
     {
     }
+
+    @Override
+    public String toString() {
+        return "Film{" + "title=" + title + ", descripcion=" + descripcion + ", a\u00f1oRealizado=" + añoRealizado + ", lenguajeId=" + lenguajeId + ", duracion_renta=" + duracion_renta + ", tasa_renta=" + tasa_renta + ", duracionFilm=" + duracionFilm + ", costoReposicion=" + costoReposicion + ", ratingFilm=" + ratingFilm + ", a\u00f1oEstrenoFilm=" + añoEstrenoFilm + ", fechaModificacionFilm=" + fechaModificacionFilm + '}';
+    }
     
     
         
