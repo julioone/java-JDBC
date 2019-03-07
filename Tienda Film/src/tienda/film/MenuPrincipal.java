@@ -14,9 +14,15 @@ public class MenuPrincipal extends javax.swing.JDialog {
     /**
      * Creates new form MenuPrincipal
      */
+    private String nombreUsuario;
+    private String nombreTienda;
     public MenuPrincipal(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        
+        
+        
         initComponents();
+        
     }
 
     /**
@@ -29,28 +35,76 @@ public class MenuPrincipal extends javax.swing.JDialog {
     private void initComponents() {
 
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        inicioBienvenida = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        opcionEditFilm = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
+        btnSalirAplicacion = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
 
+        jMenuItem1.setText("jMenuItem1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        jButton1.setText("jButton1");
+
+        jButton2.setText("jButton2");
+
+        inicioBienvenida.setEditable(false);
+        jScrollPane1.setViewportView(inicioBienvenida);
 
         jMenu1.setText("File");
+
+        jMenu5.setText("Inventario");
+        jMenu1.add(jMenu5);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
 
-        jMenu3.setText("pelicula");
-        jMenu2.add(jMenu3);
+        opcionEditFilm.setText("pelicula");
+        opcionEditFilm.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                opcionEditFilmMouseClicked(evt);
+            }
+        });
+        jMenu2.add(opcionEditFilm);
 
-        jMenu4.setText("jMenu4");
+        jMenu4.setText("cliente");
         jMenu2.add(jMenu4);
 
         jMenuBar1.add(jMenu2);
+
+        jMenu3.setText("Exit");
+
+        btnSalirAplicacion.setText("Exit");
+        btnSalirAplicacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnSalirAplicacionMouseClicked(evt);
+            }
+        });
+        btnSalirAplicacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirAplicacionActionPerformed(evt);
+            }
+        });
+        jMenu3.add(btnSalirAplicacion);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -58,15 +112,50 @@ public class MenuPrincipal extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public void setNombreTienda(String nombreTienda) {
+        this.nombreTienda = nombreTienda;
+    }
+
+    private void opcionEditFilmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_opcionEditFilmMouseClicked
+        // TODO add your handling code here:
+        gestionPelicula menuGestionPelicula = new gestionPelicula(this,true);
+        menuGestionPelicula.setVisible(true);
+    }//GEN-LAST:event_opcionEditFilmMouseClicked
+
+    private void btnSalirAplicacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirAplicacionActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirAplicacionActionPerformed
+
+    private void btnSalirAplicacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSalirAplicacionMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirAplicacionMouseClicked
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+        inicioBienvenida.setText("BIEVENIDO AL GESTOR DE FILMS "+this.nombreUsuario+"\n ACCEDISTE A LA SUCURSAL "+this.nombreTienda+" ");
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -111,11 +200,19 @@ public class MenuPrincipal extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem btnSalirAplicacion;
+    private javax.swing.JTextPane inicioBienvenida;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JMenu opcionEditFilm;
     // End of variables declaration//GEN-END:variables
 }

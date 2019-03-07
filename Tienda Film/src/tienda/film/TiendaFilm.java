@@ -18,7 +18,7 @@ public class TiendaFilm {
     public static void main(String[] args) {
         // TODO code application logic here
         
-        Principal myventana = new Principal();
+        MenuLogin myventana = new MenuLogin();
         myventana.setVisible(true);
     }
     
