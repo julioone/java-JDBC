@@ -68,8 +68,18 @@ public class MenuPrincipal extends javax.swing.JDialog {
         jScrollPane1.setViewportView(inicioBienvenida);
 
         jMenu1.setText("File");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
 
         jMenu5.setText("Inventario");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
         jMenu1.add(jMenu5);
 
         jMenuBar1.add(jMenu1);
@@ -156,6 +166,14 @@ public class MenuPrincipal extends javax.swing.JDialog {
         // TODO add your handling code here:
         inicioBienvenida.setText("BIEVENIDO AL GESTOR DE FILMS "+this.nombreUsuario+"\n ACCEDISTE A LA SUCURSAL "+this.nombreTienda+" ");
     }//GEN-LAST:event_formWindowActivated
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu5MouseClicked
 
     /**
      * @param args the command line arguments

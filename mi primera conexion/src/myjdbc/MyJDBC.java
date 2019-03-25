@@ -21,7 +21,7 @@ public class MyJDBC {
     /**
      * @param args the command line arguments
      */
-    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/world";
+    static final String DATABASE_URL = "jdbc:mysql://localhost:3306/sakila";
     
     public static void main(String[] args) {
         // TODO code application logic here
@@ -32,10 +32,10 @@ public class MyJDBC {
         try
         {
             
-            connection  = DriverManager.getConnection(DATABASE_URL,"root","tucamaesmia1");
+            connection  = DriverManager.getConnection(DATABASE_URL,"root","contrasena");
             statement = connection.createStatement();
            
-            resultset = statement.executeQuery("SELECT * FROM city INNER JOIN country ON city.CountryCode = country.Code WHERE country.Name = 'Aruba'");
+            resultset = statement.executeQuery("SELECT * FROM film");
             ResultSetMetaData metaData = resultset.getMetaData();
             
             int numColumnas = metaData.getColumnCount();
@@ -47,12 +47,12 @@ public class MyJDBC {
                 String nombreColumna = metaData.getColumnName(i);
                 
                 
-                System.out.printf("%s;",nombreColumna);
+                System.out.printf("%s,",nombreColumna);
                 
             }
             
             System.out.println();
-            
+            /*
             while(resultset.next())
             {
                 
@@ -60,7 +60,7 @@ public class MyJDBC {
                     System.out.printf("%s;%s;",resultset.getString("city.Name"),resultset.getString("country.Name"));
                     System.out.println();
                 
-            }
+            }*/
             
             
         }
