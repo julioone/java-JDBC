@@ -19,7 +19,7 @@ public class conexionBD {
         
         try
         {
-            connection  = DriverManager.getConnection(TiendaFilm.DATABASE_URL,"root","tucamaesmia1");
+            connection  = DriverManager.getConnection(TiendaFilm.DATABASE_URL,"root","contrasena");
             statement = connection.createStatement();
             
         }
